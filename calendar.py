@@ -37,4 +37,20 @@ dni = dni_w_miesiacu(rok, miesiac)
 if dni is None:
     print("Nieprawidłowy rok lub miesiąc")
 else:
+
     print(f"Liczba dni w miesiącu {miesiac} roku {rok}: {dni}")
+
+
+def dzien_w_roku(rok, miesiac, dzien):
+    if rok < 1582 or miesiac < 1 or miesiac > 12:
+        return None
+    dni_w_mies = dni_w_miesiacu(rok, miesiac)
+    
+    if dni_w_mies is None or dzien < 1 or dzien > dni_w_mies:
+        return None
+    
+    suma = 0
+    for m in range(1, miesiac):
+        suma += dni_w_miesiacu(rok, m)
+
+    return suma + dzien
